@@ -1,7 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 void main() {
@@ -43,8 +40,9 @@ class MyWebView {
         javascriptMode: JavascriptMode.unrestricted,
         onWebViewCreated: (WebViewController webViewController) async {
             _webViewController = webViewController;
-            String fileContent = await rootBundle.loadString('assets/index.html');
-            _webViewController?.loadUrl(Uri.dataFromString(fileContent, mimeType: 'text/html', encoding: Encoding.getByName('utf-8')).toString());
+            // String fileContent = await rootBundle.loadString('assets/map.html');
+            // _webViewController?.loadUrl(Uri.dataFromString(fileContent, mimeType: 'text/html', encoding: Encoding.getByName('utf-8')).toString());
+            await _webViewController?.loadFlutterAsset('assets/map.html');
         },
         javascriptChannels: <JavascriptChannel>{
           JavascriptChannel(
